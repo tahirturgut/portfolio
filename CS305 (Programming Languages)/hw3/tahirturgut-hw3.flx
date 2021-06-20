@@ -1,0 +1,67 @@
+%{
+#include "tahirturgut-hw3.h"
+#include "tahirturgut-hw3.tab.h"
+
+%}
+%%
+
+['][^']*['] {
+		char *buffer = (char *)malloc (sizeof(char));
+		int i = 0;
+		while (yytext[i+1] != '\'') {
+			if (yytext[i+1] == '\n')
+				yylineno++;
+			buffer[i] = yytext[i+1];
+			i++;
+		}
+		yylval.strvalue = buffer;
+		return tSTRING;
+	    }
+
+["]Get["]		return tGET;
+["]Set["]		return tSET;
+["]Function["]		return tFUNCTION;
+["]Print["]		return tPRINT;
+["]If["]		return tIF;
+["]Return["]		return tRETURN;
+
+["]"+"["]               { yylval.lineNo = yylineno; return tADD; }
+["]"-"["]               { yylval.lineNo = yylineno; return tSUB; }
+["]"*"["]               { yylval.lineNo = yylineno; return tMUL; }
+["]"/"["]               { yylval.lineNo = yylineno; return tDIV; }
+["]"++"["]		return tINC;
+["]">"["]		return tGT;
+["]"=="["]		return tEQUALITY;
+["]"--"["]		return tDEC;
+["]"<"["]		return tLT;
+["]"<="["]		return tLEQ;
+["]">="["]		return tGEQ;
+
+
+["][_a-zA-Z][a-zA-Z0-9_]*["]	return tIDENT;
+				
+[0-9]+ {
+		yylval.intvalue = atoi (yytext);
+		return tNUM;
+        } 	
+
+-[0-9]+ {
+		yylval.intvalue = atoi (yytext);
+		return tNUM;
+        } 	
+
+[0-9]+"."[0-9]+ {
+			yylval.realvalue = atof (yytext);
+			return tREAL;
+		} 
+
+-[0-9]+"."[0-9]+ {
+			yylval.realvalue = atof (yytext);
+			return tREAL;
+		 } 
+
+[\n]			yylineno++;
+[ \t]+ 
+.			return yytext[0];
+
+%%
