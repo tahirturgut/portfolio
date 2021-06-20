@@ -1,0 +1,139 @@
+1##EVERY CITY HAS A TRAIN AND BUS STATION THAT AT LEAST ONE ROAD TO OTHER CITIES
+
+    all_cities = ["Istanbul", "Ankara", "Adana", "Eskisehir"]
+
+    cities_with_bus = ["Istanbul", "Ankara", "Adana", "Eskisehir"] 
+
+    cities_with_train = ["Istanbul", "Ankara", "Adana", "Eskisehir"] 
+
+    Time_btw_train_bus = [["Istanbul", 1], ["Ankara",1], ["Adana",1], ["Eskisehir",1]]
+
+    Time_btw_cities_by_bus = [["Istanbul", "Ankara", 15], ["Adana", "Ankara", 14],["Istanbul", "Eskisehir", 48] ]
+
+    Time_btw_cities_by_train = [["Istanbul", "Ankara", 100], ["Istanbul", "Adana", 2],
+                                ["Adana", "Ankara", 4],["Adana", "Eskisehir", 40] ]
+
+
+Expected Output:
+In 8 hours, road to Ankara: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Ankara-YHT', 'Ankara']
+In 4 hours, road to Adana: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Adana']
+In 44 hours, road to Eskisehir: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Eskisehir-YHT', 'Eskisehir']
+In 1 hours, road to Istanbul-YHT: ['Istanbul', 'Istanbul-YHT']
+In 7 hours, road to Ankara-YHT: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Ankara-YHT']
+In 3 hours, road to Adana-YHT: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT']
+In 43 hours, road to Eskisehir-YHT: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Eskisehir-YHT']
+
+
+2##A CITY MAY HAVE NOT A TRAIN STATION
+
+    all_cities = ["Istanbul", "Ankara", "Adana", "Eskisehir", "Izmir", "Van", "Mus"]
+
+    cities_with_bus = ["Istanbul", "Ankara", "Adana", "Eskisehir", "Izmir", "Van", "Mus"]
+
+    cities_with_train = ["Istanbul", "Ankara", "Adana", "Eskisehir", "Izmir", "Mus"]
+    
+    Time_btw_train_bus = [["Istanbul", 1], ["Ankara",1], ["Adana",1], ["Eskisehir",1], ["Izmir",1], ["Mus",1]]
+
+    Time_btw_cities_by_bus = [["Istanbul", "Ankara", 8], ["Izmir", "Van", 70], ["Istanbul", "Eskisehir", 48], ["Adana", "Ankara", 14],
+                ["Van", "Ankara", 40], ["Adana", "Ankara", 14], ["Van", "Mus", 5]]
+
+    Time_btw_cities_by_train = [["Istanbul", "Ankara", 100], ["Istanbul", "Adana", 2], ["Adana", "Ankara", 5], 
+                                ["Adana", "Eskisehir", 40], ["Adana", "Izmir", 60]]
+
+
+Expected Output:
+In 8 hours, road to Ankara: ['Istanbul', 'Ankara']
+In 4 hours, road to Adana: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Adana']
+In 44 hours, road to Eskisehir: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Eskisehir-YHT', 'Eskisehir']
+In 64 hours, road to Izmir: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Izmir-YHT', 'Izmir']
+In 48 hours, road to Van: ['Istanbul', 'Ankara', 'Van']
+In 53 hours, road to Mus: ['Istanbul', 'Ankara', 'Van', 'Mus']
+In 1 hours, road to Istanbul-YHT: ['Istanbul', 'Istanbul-YHT']
+In 8 hours, road to Ankara-YHT: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Ankara-YHT']
+In 3 hours, road to Adana-YHT: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT']
+In 43 hours, road to Eskisehir-YHT: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Eskisehir-YHT']
+In 63 hours, road to Izmir-YHT: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Izmir-YHT']
+In 54 hours, road to Mus-YHT: ['Istanbul', 'Ankara', 'Van', 'Mus', 'Mus-YHT']
+
+
+
+##3 THERE IS ONLY ONE STATION (HAREM)
+
+    all_cities = ["Istanbul"]
+
+    cities_with_bus = ["Istanbul"]
+
+    cities_with_train = []
+
+    Time_btw_train_bus = []
+
+    Time_btw_cities_by_bus = []
+
+    Time_btw_cities_by_train = []
+
+
+Expected Output: 
+There is no enough city or station!
+
+
+
+##4 THERE IS ENOUGH STATION BUT NO CONNECTION
+
+    all_cities = ["Istanbul", "Ankara", "Van"]
+
+    cities_with_bus = ["Istanbul", "Ankara"]
+
+    cities_with_train = ["Van"]
+
+    Time_btw_train_bus = []
+
+    Time_btw_cities_by_bus = []
+
+    Time_btw_cities_by_train = []
+
+
+Expected Output:
+There is no way to Ankara
+There is no way to Van-YHT
+
+
+
+##5 THERE ARE MORE THAN ONE OPTIMAL ROAD
+
+    citiesBus = [ "Harem", "Ankara", "Adana", "Eskisehir" ]
+    citiesTrain = [ "Istanbul-YHT", "Ankara-YHT", "Adana-YHT", "Eskisehir-YHT" ]
+
+    busRoads = [ ["Harem", "Ankara", 8], ["Adana", "Ankara", 14],["Harem", "Eskisehir", 48] ]
+
+    trainRoads = [["Istanbul-YHT", "Ankara-YHT", 100], ["Istanbul-YHT", "Adana-YHT", 2],
+                  ["Adana-YHT", "Ankara-YHT", 4], ["Adana-YHT", "Eskisehir-YHT", 40] ]
+    internalRoads = [ ["Harem","Istanbul-YHT", 1], ["Ankara","Ankara-YHT", 1],
+                      ["Adana","Adana-YHT", 1],["Eskisehir","Eskisehir-YHT", 1]]
+
+
+Istanbul to Ankara is 8:					DOES NOT MATTER AT ALL
+Istanbul -> Ankara
+or
+Istanbul -> Istanbul-YHT -> Adana-YHT -> Ankara-YHT
+
+Expected Output: 
+In 8 hours, road to Ankara: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Ankara-YHT', 'Ankara']
+In 4 hours, road to Adana: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Adana']
+In 44 hours, road to Eskisehir: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Eskisehir-YHT', 'Eskisehir']
+In 1 hours, road to Istanbul-YHT: ['Istanbul', 'Istanbul-YHT']
+In 7 hours, road to Ankara-YHT: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Ankara-YHT']
+In 3 hours, road to Adana-YHT: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT']
+In 43 hours, road to Eskisehir-YHT: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Eskisehir-YHT']
+
+
+or
+
+
+In 8 hours, road to Ankara: ['Istanbul', 'Ankara']
+In 4 hours, road to Adana: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Adana']
+In 44 hours, road to Eskisehir: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Eskisehir-YHT', 'Eskisehir']
+In 1 hours, road to Istanbul-YHT: ['Istanbul', 'Istanbul-YHT']
+In 7 hours, road to Ankara-YHT: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Ankara-YHT']
+In 3 hours, road to Adana-YHT: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT']
+In 43 hours, road to Eskisehir-YHT: ['Istanbul', 'Istanbul-YHT', 'Adana-YHT', 'Eskisehir-YHT']
+
