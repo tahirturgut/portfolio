@@ -1,0 +1,43 @@
+0 0 0 0 0
+0 1 0 1 0
+0 0 0 0 1
+1 F 0 0 0
+0 0 0 1 0
+
+(at frog node42)(visited node42)
+
+            (visited node11)
+            (visited node12)
+            (visited node13)
+            (visited node14)
+            (visited node15)
+            (visited node21)
+            (not
+                (visited node22)
+            )
+            (visited node23)
+            (not
+                (visited node24)
+            )
+            (visited node25)
+            (visited node31)
+            (visited node32)
+            (visited node33)
+            (visited node34)
+            (not
+                (visited node35)
+            )
+            (not
+                (visited node41)
+            )
+            (visited node42)
+            (visited node43)
+            (visited node44)
+            (visited node45)
+            (visited node51)
+            (visited node52)
+            (visited node53)
+            (not
+                (visited node54)
+            )
+            (visited node55)
