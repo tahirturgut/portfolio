@@ -1,4 +1,4 @@
-# week6_starter
+# CS310 Mobile Application Development Project
 
 A new Flutter project.
 
